@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "725635177933",
+    "project_id": "chatting-karlo",
+    "storage_bucket": "chatting-karlo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725635177933:android:d0f640d53000674fe13884",
+        "android_client_info": {
+          "package_name": "com.example.chatting_karlo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "725635177933-71fu87b1hf5bt1s7hs26dltsen0bapfd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcP281iuMJtCyiWSs82Rn4JKekjoljoHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "725635177933-71fu87b1hf5bt1s7hs26dltsen0bapfd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
