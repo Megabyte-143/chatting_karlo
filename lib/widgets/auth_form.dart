@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
-  const AuthForm({Key? key}) : super(key: key);
+  //const AuthForm({Key? key}) : super(key: key);
 
+  AuthForm(this.submitFn,this.isLoading);
+
+  final void Function(String userEmail, String userName, String userPassword,
+      bool isLogin, BuildContext ctx,) submitFn;
+  final bool isLoading;
   @override
   _AuthFormState createState() => _AuthFormState();
 }
@@ -10,20 +15,27 @@ class AuthForm extends StatefulWidget {
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
 
-  var _isLogin = true;
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
+  var _isLogin = true;
 
-  void _trySubmit() {
+  void _trySubmit(BuildContext context) {
     final _isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
 
     if (_isValid) {
-      _formKey.currentState!.save();
-      print(_userEmail);
-      print(_userName);
-      print(_userPassword);
+       _formKey.currentState!.save();
+      // print(_userEmail);
+      // print(_userName);
+      // print(_userPassword);
+      widget.submitFn(
+        _userEmail.trim(),
+        _userName.trim(),
+        _userPassword.trim(),
+        _isLogin,
+        context,
+      );
     }
   }
 
@@ -87,12 +99,17 @@ class _AuthFormState extends State<AuthForm> {
                     SizedBox(
                       height: 10,
                     ),
+                    if(widget.isLoading)CircularProgressIndicator(),
+                    if(!widget.isLoading)
                     ElevatedButton(
-                      onPressed: _trySubmit,
+                      onPressed: () {
+                        _trySubmit(context);
+                      },
                       child: Text(
                         _isLogin ? "Login" : "SignUp",
                       ),
                     ),
+                    if(!widget.isLoading)
                     TextButton(
                       onPressed: () {
                         setState(() {
