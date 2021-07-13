@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import '../widgets/auth/auth_form.dart';
 
@@ -18,6 +21,7 @@ class _AuthScreenState extends State<AuthScreen> {
     String userEmail,
     String userName,
     String userPassword,
+    File userImage,
     bool isLogin,
     BuildContext ctx,
   ) async {
@@ -33,6 +37,13 @@ class _AuthScreenState extends State<AuthScreen> {
       } else {
         authResult = await _auth.createUserWithEmailAndPassword(
             email: userEmail, password: userPassword);
+
+        final ref = FirebaseStorage.instance
+            .ref()
+            .child('user_image')
+            .child(authResult.user!.uid + '.jpg');
+
+        await ref.putFile(userImage).whenComplete(()=>null);
         await FirebaseFirestore.instance
             .collection('user')
             .doc(authResult.user!.uid)
@@ -50,17 +61,20 @@ class _AuthScreenState extends State<AuthScreen> {
 
       ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
         content: Text(message),
-        backgroundColor: Theme.of(ctx).errorColor,
+        backgroundColor: Colors.black,
       ));
 
-      print(error);
+      print(error.message);
 
       setState(() {
         _isLoading = false;
       });
     } catch (error) {
       print(error);
-
+      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+        content: Text(error.toString()),
+        backgroundColor: Colors.black,
+      ));
       setState(() {
         _isLoading = false;
       });
