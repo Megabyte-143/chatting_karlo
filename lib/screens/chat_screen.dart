@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../widgets/Chats/message.dart';
+import '../widgets/Chats/messages.dart';
 import '../widgets/Chats/new_message.dart';
 
 class ChatScreen extends StatelessWidget {
