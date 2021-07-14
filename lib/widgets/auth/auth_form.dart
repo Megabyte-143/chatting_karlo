@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '/widgets/image_picker.dart';
+import '../image/image_picker.dart';
 
 class AuthForm extends StatefulWidget {
   //const AuthForm({Key? key}) : super(key: key);
