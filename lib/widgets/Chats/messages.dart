@@ -27,7 +27,9 @@ class Message extends StatelessWidget {
             reverse: true,
             itemBuilder: (ctx, index) {
               return MessageBubble(
-                chatDocs[index]['text'],chatDocs[index]['userName'],
+                chatDocs[index]['text'],
+                chatDocs[index]['userName'],
+                chatDocs[index]['image_url'],
                 FirebaseAuth.instance.currentUser!.uid ==
                     chatDocs[index]['userId'],
               );

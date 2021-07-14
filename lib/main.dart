@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import './screens/chat_screen.dart';
 import './screens/auth_screen.dart';
+import './screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,6 +45,9 @@ class _MyAppState extends State<MyApp> {
                 home: StreamBuilder(
                   stream: FirebaseAuth.instance.authStateChanges(),
                   builder: (ctx, userState) {
+                    if (userState.connectionState == ConnectionState.waiting) {
+                      return SplashScreen();
+                    }
                     if (userState.hasData) {
                       return ChatScreen();
                     }
