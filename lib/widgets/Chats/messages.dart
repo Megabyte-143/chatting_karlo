@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'message_bubble.dart';
 
-class Message extends StatelessWidget {
+class Messages extends StatelessWidget {
   //const Message({Key? key}) : super(key: key);
 
   @override
@@ -22,6 +22,10 @@ class Message extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
+          if(chatSnapshot.data==null){
+
+          }
+
           final chatDocs = chatSnapshot.data!.docs;
           return ListView.builder(
             reverse: true,

@@ -49,7 +49,7 @@ class _AuthScreenState extends State<AuthScreen> {
             .collection('user')
             .doc(authResult.user!.uid)
             .set({
-          'username': userName,
+          'userName': userName,
           'email': userEmail,
           'image_url':userImageUrl,
         });
@@ -73,10 +73,10 @@ class _AuthScreenState extends State<AuthScreen> {
       });
     } catch (error) {
       print(error);
-      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
-        content: Text(error.toString()),
-        backgroundColor: Colors.black,
-      ));
+      // ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+      //   content: Text(error.toString()),
+      //   backgroundColor: Colors.black,
+      // ));
       setState(() {
         _isLoading = false;
       });
