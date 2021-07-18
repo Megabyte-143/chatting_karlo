@@ -32,7 +32,7 @@ class _AuthFormState extends State<AuthForm> {
   var _userName = '';
   var _userPassword = '';
   var _isLogin = true;
-  File _userImage = File('');
+  File _userImage = File('assets/images/download.png');
 
   void _pickedImage(File image) {
     _userImage = image;
